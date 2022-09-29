@@ -9,6 +9,7 @@ typedef struct Student{
 	char name[20];
 }Student;
 
+
 Student make_student(){
 	Student s;
 	printf("Ingresa el ID: "); scanf("%i", &s.i);
@@ -71,6 +72,32 @@ int delete_student(){
 	rename("new.dat", F);
 }
 
+int modify_student(){
+	FILE *file = open_file(F, READ);
+	FILE *newfile = open_file("new.dat", "wb+rb");
+	Student s;
+	int n = 0;
+
+	printf("Ingrese el ID buscado: "); scanf("%i", &n);
+
+	while(!feof(file)){
+		if(!fread(&s, sizeof(Student), 1, file))
+			continue;
+
+		if (n == s.i)
+			s = make_student();
+
+		fwrite(&s, sizeof(Student), 1, newfile);
+	}
+	
+	fclose(file);
+	fclose(newfile);
+	
+	remove(F);
+	rename("new.dat", F);
+}
+
+
 int print_students(){
 	FILE *file = open_file(F, READ);
 	read_file(file);
@@ -94,5 +121,11 @@ void search_student(){
 		return;
 	}
 	show_student(s);
+	fclose(file);
+}
+
+int clear_list(){
+	remove(F);
+	FILE *file = open_file(F, WRITE);
 	fclose(file);
 }

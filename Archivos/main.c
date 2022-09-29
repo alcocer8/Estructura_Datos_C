@@ -19,11 +19,11 @@ void menu_switch_case(int opc){
 	switch(opc){
 		case 1: add_student(); break;
 		case 2: delete_student(); break;
-		case 3: printf("modify_student\n"); break;
+		case 3: modify_student(); break;
 		case 4: search_student(); break;
 		case 5: printf("Sort_list\n"); break;
 		case 6: print_students(); break;
-		case 7: printf("Clear_list.\n"); break;
+		case 7: clear_list(); break;
 		case 8: printf("Bye.\n"); break;
 		default: printf("Try Again\n"); break;
 	}
