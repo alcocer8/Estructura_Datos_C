@@ -56,8 +56,9 @@ int eliminar_lista_doble(NodoDoble **list)
 
 int eliminar_final_doble(NodoDoble **list)
 {
-	if(!*list)
-		return 0;
+	if(!*list || !(*list)->sig)
+		return eliminar_lista_doble(&*list);
+
 
 	NodoDoble *tmp = *list;
 	for(; tmp->sig->sig; tmp = tmp->sig);
