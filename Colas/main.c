@@ -2,10 +2,13 @@
 #include <stdlib.h>
 #include "nodo.h"
 #include "cola_simple.h"
-#include "menu.h"
+#include "cola_doble.h"
 
 int main(int argc, char const *argv[])
 {
-	menu_ciclo();
+
+	ColaDoble *cola = crear_cola_doble();
+
+	
 	return 0;
 }
